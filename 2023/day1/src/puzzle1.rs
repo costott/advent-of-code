@@ -8,15 +8,13 @@ fn get_value(line: &str) -> usize {
 
     for i in 0..end {
         if first.is_none() {
-            match line[i..=i].parse::<usize>() {
-                Ok(n) => first = Option::Some(n),
-                Err(_) => {}
+            if let Ok(n) = line[i..=i].parse::<usize>() {
+                first = Some(n);
             }
         }
         if last.is_none() {
-            match line[end - 1 - i..=end - 1 - i].parse::<usize>() {
-                Ok(n) => last = Option::Some(n),
-                Err(_) => {}
+            if let Ok(n) = line[end - 1 - i..=end - 1 - i].parse::<usize>() {
+                last = Option::Some(n);
             }
         }
     }
