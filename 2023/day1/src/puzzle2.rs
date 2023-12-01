@@ -1,6 +1,6 @@
 use std::fs;
 
-fn get_value(line: String) -> usize {
+fn get_value(line: &str) -> usize {
     let mut first: Option<usize> = Option::None;
     let mut last: Option<usize> = Option::None;
 
@@ -25,23 +25,23 @@ fn get_value(line: String) -> usize {
 }
 
 pub fn calibrate() {
-    let input = fs::read_to_string("day1input.txt").unwrap();
+    let mut input = fs::read_to_string("day1input.txt").unwrap();
+
+    input = input.replace("one", "o1e");
+    input = input.replace("two", "t2o");
+    input = input.replace("three", "t3e");
+    input = input.replace("four", "f4r");
+    input = input.replace("five", "f5e");
+    input = input.replace("six", "s6x");
+    input = input.replace("seven", "s7n");
+    input = input.replace("eight", "e8t");
+    input = input.replace("nine", "n9e");
 
     let lines: Vec<&str> = input.split("\n").collect();
 
     let mut sum = 0;
 
     for line in lines {
-        let mut line = line.replace("one", "o1e");
-        line = line.replace("two", "t2o");
-        line = line.replace("three", "t3e");
-        line = line.replace("four", "f4r");
-        line = line.replace("five", "f5e");
-        line = line.replace("six", "s6x");
-        line = line.replace("seven", "s7n");
-        line = line.replace("eight", "e8t");
-        line = line.replace("nine", "n9e");
-
         sum += get_value(line);
     }
 
